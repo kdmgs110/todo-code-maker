@@ -1,0 +1,116 @@
+<html ng-app>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>TODO/回答</h1>
+      <div class="form-group">
+        <form>
+          <label for="todo">todo</label>
+          <textarea
+            class="form-control"
+            name="todo"
+            rows="5"
+            cols="100"
+            ng-model="todo"
+            placeholder="todo"
+            ng-model="todo"
+            placeholder="todo"
+          ></textarea>
+          <label for="answer">回答</label>
+          <textarea
+            class="form-control"
+            name="todo"
+            rows="5"
+            cols="100"
+            ng-model="answer"
+            placeholder="answer"
+            ng-model="answer"
+            placeholder="answer"
+          ></textarea>
+          <select
+            class="form-control"
+            id="exampleFormControlSelect1"
+            class="form-control"
+            name="lang"
+            placeholder="lang"
+            ng-model="lang"
+          >
+            <option>html</option>
+            <option>python</option>
+            <option>javascript</option>
+            <option>css</option>
+          </select>
+          <button
+            type="submit"
+            class="btn btn-primary mb-2"
+            data-clipboard-target="#code"
+            data-clipboard-action="copy"
+          >
+            コピー
+          </button>
+        </form>
+      </div>
+
+      <xmp style="background-color: #000000; color: #fff" id="code">
+        <div class="todo">
+            <ul class="nav nav-tabs todo-pills">
+                <li class="nav-item nav-todo">
+                <a class="nav-link active" href="javascript:void(0)">TODO</a>
+                </li>
+                <li class="nav-item nav-todo-answer">
+                <a class="nav-link" href="javascript:void(0)">答えを見る</a>
+                </li>
+            </ul>
+            
+            <div class="todo-content-container">
+                <div class="todo-content p-3" style='display: block;'>
+                <div class="highlight">
+                    <pre>
+                        <code class="language-{{lang}}">{{todo}}</code>
+                    </pre>
+                </div>
+                </div>
+            
+                <div class="todo-answer-content p-3" style='display: none;'>
+                    <pre>
+                        <code class="language-{{lang}}">{{answer}}</code>
+                    </pre>
+                </div>
+            </div>
+            </div>
+
+</xmp>
+    </div>
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var clipboard = new ClipboardJS(".btn");
+
+      clipboard.on("success", function (e) {
+        console.info("Action:", e.action);
+        console.info("Text:", e.text);
+        console.info("Trigger:", e.trigger);
+
+        e.clearSelection();
+      });
+
+      clipboard.on("error", function (e) {
+        console.error("Action:", e.action);
+        console.error("Trigger:", e.trigger);
+      });
+    </script>
+  </body>
+</html>
